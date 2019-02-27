@@ -1,0 +1,89 @@
+name: AdvancedWarplistUI
+main: cc.cu.programjm.advancedwarplistui.Main
+author: "Jonathan Moore (lucario9/programjm)"
+version: 0.1.1
+commands:
+  warp:
+    description: Warp to a given warp.
+    usage: "/warp [player] <name>"
+    permission: warplist.warp
+  setwarp:
+    description: Sets a warp.
+    usage: "/setwarp <name>"
+    permission: warplist.setwarp
+  delwarp:
+    description: Deletes a warp.
+    aliases: [deletewarp]
+    usage: "/delwarp <name>"
+    permission: warplist.setwarp
+  warplist:
+    description: Displays a list of all warps.
+    aliases: [warps, wl, wlist, warpl]
+    permission: warplist.warplist
+    usage: "/warplist"
+  editwarp:
+    description: Views or edits the properties of a warp.
+    permission: warplist.setwarp
+    usage: "/editwarp <warp> [property] [value]"
+
+permissions:
+  warplist.basic:
+    description: Allows for basic user commands. Given by default.
+    children:
+      warplist.warp: true
+      warplist.warplist: true
+    default: true
+
+  warplist.trusted:
+    description: Provides all basic commands + commands for trusted users.
+    children:
+      warplist.basic: true
+      warplist.warp: true
+      warplist.warplist: true
+      warplist.setwarp: true
+      warplist.setwarp.hidden: true
+      warplist.setwarp.private: true
+
+  warplist.admin:
+    description: Provides all admin and below commands.
+    children:
+      warplist.trusted: true
+      warplist.warp.other: true
+      warplist.setwarp.others: true
+#      warplist.setwarp.cost: true
+      warplist.setwarp.featured: true
+      warplist.warp.private: true
+      warplist.warplist.hidden: true
+    default: op
+
+  warplist.*:
+    description:
+
+
+
+  warplist.warp:
+    description: Allows use of the /warp command.
+  warplist.warp.other:
+      description: Allows use of the /warp command on other players.
+  warplist.warplist:
+    description: Allows use of the /warplist command.
+  warplist.setwarp:
+    description: Allows a user to use /setwarp, /editwarp, and /delwarp for warps the user owns.
+  warplist.setwarp.others:
+    description: Allows a user to use /setwarp, /editwarp, and /delwarp for warps the user does not own.
+#  warplist.setwarp.cost:
+#    description: Allows a user to create paid warps.
+  warplist.setwarp.featured:
+    description: Allows the user to make their warps featured.
+  warplist.setwarp.private:
+    description: Allows users to make their warps private.
+  warplist.setwarp.hidden:
+    description: Allows users to make their warps hidden from the warplist.
+  warplist.warplist.hidden:
+    description: Allows users to see hidden warps.
+  warplist.warp.private:
+    description: Allows users to warp to private warps.
+  warplist.stacktrace:
+    description: Users with this permission will see plugin stack traces (detailled error messages.) Recommended mainly for beta testers and developers. Not included by default in warplist.admin
+    default: not op
+
